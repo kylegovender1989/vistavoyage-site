@@ -6,20 +6,32 @@ export default {
 
     // Check if the path is for our new weather API endpoint.
     if (url.pathname === '/api/get-weather') {
-      // --- This is our secure function logic ---
+      // Get the city from the query parameter (e.g., /api/get-weather?city=Soweto)
+      const city = url.searchParams.get('city');
+
+      // If the user didn't provide a city, return an error.
+      if (!city) {
+        return new Response(JSON.stringify({ error: { message: 'City parameter is missing.' } }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      
       // IMPORTANT: Replace this with your real, secret API key.
-      const API_KEY = "654803d4318841a1900164803252407";
-      const weatherApiUrl = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=London`;
+      const API_KEY = "YOUR_REAL_WEATHER_API_KEY_GOES_HERE";
+
+      // Use the dynamic city from the user in the API URL.
+      const weatherApiUrl = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${encodeURIComponent(city)}`;
       
       try {
+        // Fetch the data from the real weather API.
         const weatherResponse = await fetch(weatherApiUrl);
-        // We will pass the response directly back to the user's browser.
+        // Pass the response directly back to the user's browser.
         return weatherResponse;
 
       } catch (error) {
         return new Response('Error fetching weather data from external API', { status: 500 });
       }
-      // --- End of secure function logic ---
     }
 
     // If the request is not for our API, just serve the static website files.
