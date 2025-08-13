@@ -8,7 +8,7 @@ export default {
     if (url.pathname === '/api/get-weather') {
       // --- This is our secure function logic ---
       // IMPORTANT: Replace this with your real, secret API key.
-      const API_KEY = "YOUR_REAL_WEATHER_API_KEY_GOES_HERE";
+      const API_KEY = "654803d4318841a1900164803252407";
       const weatherApiUrl = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=London`;
       
       try {
