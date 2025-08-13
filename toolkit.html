@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Toolkit | VistaVoyage</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Your essential travel toolkit: live currency converter, weather forecast, interactive packing checklist, and luggage guides to prepare for your next journey.">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=1.5">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header { padding: 120px 0 60px; text-align: center; background: var(--bg-soft); }
+        .page-content .container { max-width: 960px; }
+        .toolkit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .tool-widget { background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 24px 28px; box-shadow: 0 4px 14px -8px rgba(var(--shadow-color)/.18); display: flex; flex-direction: column; }
+        .tool-widget h2 { font-size: 1.5rem; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 6px; font-size: .9rem; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; }
+        .tool-result { margin-top: 20px; background: var(--bg-soft); padding: 16px; border-radius: var(--radius-md); text-align: center; font-weight: 600; font-size: 1.1rem; }
+        #weatherResult { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        #packingList { list-style: none; padding: 0; flex-grow: 1;}
+        #packingList li { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--bg-soft); cursor: pointer; transition: color 0.2s; }
+        #packingList li:hover { color: var(--primary); }
+        #packingList li.checked { text-decoration: line-through; color: var(--text-light); }
+        #packingList li input { margin-right: 12px; transform: scale(1.1); }
+        .packing-form { display: flex; gap: 10px; margin-top: 20px; }
+        .packing-form input { flex-grow: 1; }
+        .tool-widget a.btn { margin-top: auto; }
+    </style>
+</head>
+<body>
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a href="/" class="brand" aria-label="VistaVoyage Home">
+          <span class="brand-mark" aria-hidden="true">VV</span>
+          <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileMenu">
+        <nav aria-label="Mobile">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+        <section class="page-header">
+            <div class="container">
+                <h1>Travel Toolkit</h1>
+                <p class="section-intro">Essential tools to help you plan your journey with confidence.</p>
+            </div>
+        </section>
+        <section class="page-content section">
+            <div class="container toolkit-grid">
+
+                <div class="tool-widget">
+                    <h2>Currency Converter</h2>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" value="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="fromCurrency">From</label>
+                        <select id="fromCurrency">
+                            <option value="ZAR">ZAR - South African Rand</option>
+                            <option value="USD" selected>USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toCurrency">To</label>
+                        <select id="toCurrency">
+                            <option value="ZAR" selected>ZAR - South African Rand</option>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                        </select>
+                    </div>
+                    <button id="convertBtn" class="btn btn--primary" style="width:100%;">Convert</button>
+                    <div id="currencyResult" class="tool-result" style="display:none;"></div>
+                </div>
+
+                <div class="tool-widget">
+                    <h2>Live Weather Forecast</h2>
+                    <div class="form-group">
+                        <label for="city">Enter City Name</label>
+                        <input type="text" id="city" placeholder="e.g. Soweto">
+                    </div>
+                    <button id="weatherBtn" class="btn btn--primary" style="width:100%;">Get Weather</button>
+                    <div id="weatherResult" class="tool-result" style="display:none;"></div>
+                </div>
+
+                <div class="tool-widget">
+                    <h2>Luggage Allowance Guide</h2>
+                    <p>Baggage rules can be confusing. We've compiled a simple guide to the allowances for major airlines to help you pack with peace of mind.</p>
+                    <a href="/luggage-allowance-guide.html" class="btn btn--primary" style="width: 100%;">View the Guide</a>
+                </div>
+
+                <div class="tool-widget" style="grid-column: 1 / -1;">
+                    <h2>Interactive Packing List</h2>
+                    <ul id="packingList">
+                        </ul>
+                    <div class="packing-form">
+                        <input type="text" id="newItem" placeholder="Add new item...">
+                        <button id="addItemBtn" class="btn btn--accent">Add</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="footer" aria-labelledby="footerHeading">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <h2 class="visually-hidden" id="footerHeading">Footer</h2>
+          <a href="/" class="brand footer-logo">
+            <span class="brand-mark">VV</span>
+            <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+          </a>
+          <p class="footer-tagline">Elevate every journey with curated stays & strategic travel insight.</p>
+          <p class="disclosure"><strong>Affiliate Disclosure:</strong> VistaVoyage may earn commission from qualifying bookings. <a href="/policy.html" style="color: inherit;">Learn more</a>.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-nav" aria-label="Company">
+          <h3 class="footer-title">Company</h3>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/#why">Vision & Method</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/policy.html">Affiliate Policy</a></li>
+          </ul>
+        </nav>
+        <div class="footer-legal">
+          <h3 class="footer-title">Legal</h3>
+          <p class="footer-copy">&copy; <span id="year"></span> VistaVoyage. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        // Standard Site Scripts
+        document.documentElement.classList.remove('no-js');
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.getElementById('mobileMenu');
+
+        // NEW & IMPROVED JAVASCRIPT
+        navToggle.addEventListener('click', () => {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+            navToggle.setAttribute('aria-expanded', !expanded);
+            document.body.classList.toggle('nav-open');
+        });
+
+        mobileNav.addEventListener('click', e => {
+            if (e.target.tagName === 'A') {
+                document.body.classList.remove('nav-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- WIDGET SCRIPTS ---
+        
+        // --- CURRENCY CONVERTER SCRIPT ---
+        const convertBtn = document.getElementById('convertBtn');
+        const currencyResult = document.getElementById('currencyResult');
+        // !! CRITICAL SECURITY WARNING !!
+        // Your API key should NOT be stored here. This is visible to anyone visiting your website.
+        // You must load this key from a secure backend environment or a serverless function.
+        const currencyApiKey = 'YOUR_EXCHANGERATE_API_KEY_HERE';
+
+        if(convertBtn) {
+            convertBtn.addEventListener('click', () => {
+                const amount = document.getElementById('amount').value;
+                const fromCurrency = document.getElementById('fromCurrency').value;
+                const toCurrency = document.getElementById('toCurrency').value;
+
+                if (!amount) {
+                    currencyResult.textContent = 'Please enter an amount.';
+                    currencyResult.style.display = 'block';
+                    return;
+                }
+                
+                if (currencyApiKey === 'YOUR_EXCHANGERATE_API_KEY_HERE') {
+                    currencyResult.textContent = 'Currency converter is not configured.';
+                    currencyResult.style.display = 'block';
+                    return;
+                }
+
+                const apiUrl = `https://v6.exchangerate-api.com/v6/${currencyApiKey}/latest/${fromCurrency}`;
+                currencyResult.textContent = 'Calculating...';
+                currencyResult.style.display = 'block';
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const rate = data.conversion_rates[toCurrency];
+                        const convertedAmount = (amount * rate).toFixed(2);
+                        currencyResult.innerHTML = `${amount} ${fromCurrency} = <strong>${convertedAmount} ${toCurrency}</strong>`;
+                    })
+                    .catch(error => {
+                        currencyResult.textContent = 'Error fetching conversion rate.';
+                    });
+            });
+        }
+
+        // --- WEATHER FORECAST SCRIPT ---
+        const weatherBtn = document.getElementById('weatherBtn');
+        const weatherResult = document.getElementById('weatherResult');
+        // !! CRITICAL SECURITY WARNING !!
+        // Your API key should NOT be stored here.
+        // You must load this key from a secure backend environment.
+        const weatherApiKey = 'YOUR_WEATHERAPI_KEY_HERE';
+        
+        if(weatherBtn) {
+            weatherBtn.addEventListener('click', () => {
+                const city = document.getElementById('city').value;
+                if (!city) {
+                    weatherResult.innerHTML = 'Please enter a city.';
+                    weatherResult.style.display = 'flex';
+                    return;
+                }
+                
+                if (weatherApiKey === 'YOUR_WEATHERAPI_KEY_HERE') {
+                    weatherResult.innerHTML = 'Weather forecast is not configured.';
+                    weatherResult.style.display = 'flex';
+                    return;
+                }
+
+                const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${city}&aqi=no`;
+                weatherResult.innerHTML = 'Fetching weather...';
+                weatherResult.style.display = 'flex';
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                           weatherResult.innerHTML = data.error.message;
+                        } else {
+                            weatherResult.innerHTML = `
+                                <img src="https:${data.current.condition.icon}" alt="${data.current.condition.text}">
+                                <span>${data.location.name}: <strong>${data.current.temp_c}°C, ${data.current.condition.text}</strong></span>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                         weatherResult.innerHTML = 'Could not fetch weather data.';
+                    });
+            });
+        }
+
+        // --- PACKING CHECKLIST SCRIPT ---
+        const packingList = document.getElementById('packingList');
+        const newItemInput = document.getElementById('newItem');
+        const addItemBtn = document.getElementById('addItemBtn');
+
+        if(packingList) {
+            let items = JSON.parse(localStorage.getItem('packingListItems')) || [
+                { text: 'Passport & Visas', checked: false },
+                { text: 'Flight / Hotel Confirmations', checked: false },
+                { text: 'Phone & Charger', checked: false },
+                { text: 'Local Currency / Cards', checked: false },
+                { text: 'Medication', checked: false },
+                { text: 'T-shirts & Tops', checked: false },
+                { text: 'Trousers / Shorts', checked: false },
+                { text: 'Jacket / Sweater', checked: false },
+                { text: 'Swimsuit', checked: false },
+                { text: 'Sunscreen', checked: false },
+                { text: 'Sunglasses', checked: false }
+            ];
+
+            function saveItems() {
+                localStorage.setItem('packingListItems', JSON.stringify(items));
+            }
+
+            function renderList() {
+                packingList.innerHTML = '';
+                items.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.className = item.checked ? 'checked' : '';
+                    li.innerHTML = `<input type="checkbox" ${item.checked ? 'checked' : ''} data-index="${index}"><span>${item.text}</span>`;
+                    packingList.appendChild(li);
+                });
+            }
+
+            packingList.addEventListener('click', (e) => {
+                if (e.target.tagName === 'INPUT') {
+                    const index = e.target.dataset.index;
+                    items[index].checked = !items[index].checked;
+                    saveItems();
+                    renderList();
+                }
+            });
+
+            addItemBtn.addEventListener('click', () => {
+                const text = newItemInput.value.trim();
+                if (text) {
+                    items.push({ text: text, checked: false });
+                    newItemInput.value = '';
+                    saveItems();
+                    renderList();
+                }
+            });
+            
+            newItemInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    addItemBtn.click();
+                }
+            });
+
+            renderList();
+        }
+    </script>
+</body>
+</html>

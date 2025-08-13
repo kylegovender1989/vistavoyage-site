@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact | VistaVoyage</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=1.5">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header { padding: 120px 0 60px; text-align: center; background: var(--bg-soft); }
+        .page-content { padding: 60px 0; }
+        .page-content .container { max-width: 800px; }
+        .contact-form { margin-top: 40px; display: grid; gap: 20px; }
+        .contact-form .form-group { display: grid; gap: 8px; }
+        .contact-form input, .contact-form textarea { width: 100%; border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); }
+        .email-link { font-weight: 500; color: var(--primary); }
+        .email-link a { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a href="/" class="brand" aria-label="VistaVoyage Home">
+          <span class="brand-mark" aria-hidden="true">VV</span>
+          <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileMenu">
+        <nav aria-label="Mobile">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+        <section class="page-header">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p class="section-intro">Have questions, feedback, or a partnership idea? We'd love to hear from you.</p>
+            </div>
+        </section>
+        <section class="page-content">
+            <div class="container">
+                <p>For general inquiries, please feel free to email us directly at <a href="mailto:hello@vistavoyage.co.za" class="inline-link">hello@vistavoyage.co.za</a>, or use the form below. We do our best to respond within 48 hours.</p>
+                
+                <form class="contact-form" action="https://formsubmit.co/hello@vistavoyage.co.za" method="POST">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from VistaVoyage">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="footer" aria-labelledby="footerHeading">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <h2 class="visually-hidden" id="footerHeading">Footer</h2>
+          <a href="/" class="brand footer-logo">
+            <span class="brand-mark">VV</span>
+            <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+          </a>
+          <p class="footer-tagline">Elevate every journey with curated stays & strategic travel insight.</p>
+          <p class="disclosure"><strong>Affiliate Disclosure:</strong> VistaVoyage may earn commission from qualifying bookings. <a href="/policy.html" style="color: inherit;">Learn more</a>.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-nav" aria-label="Company">
+          <h3 class="footer-title">Company</h3>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/#why">Vision & Method</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/policy.html">Affiliate Policy</a></li>
+          </ul>
+        </nav>
+        <div class="footer-legal">
+          <h3 class="footer-title">Legal</h3>
+          <p class="footer-copy">&copy; <span id="year"></span> VistaVoyage. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.documentElement.classList.remove('no-js');
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobileNav = document.getElementById('mobileMenu');
+
+      // NEW & IMPROVED JAVASCRIPT
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+        navToggle.setAttribute('aria-expanded', !expanded);
+        document.body.classList.toggle('nav-open');
+      });
+
+      mobileNav.addEventListener('click', e => {
+        if (e.target.tagName === 'A') {
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduced-motion');
+      }
+    </script>
+</body>
+</html>

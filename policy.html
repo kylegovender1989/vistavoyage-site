@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <title>Affiliate Policy | VistaVoyage</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=1.5">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header { padding: 120px 0 60px; text-align: center; background: var(--bg-soft); }
+        .page-content { padding: 60px 0; }
+        .page-content .container { max-width: 800px; }
+        .page-content h2 { margin-bottom: 20px; }
+        .page-content p { margin-bottom: 1.5em; line-height: 1.7; }
+    </style>
+</head>
+<body>
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a href="/" class="brand" aria-label="VistaVoyage Home">
+          <span class="brand-mark" aria-hidden="true">VV</span>
+          <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileMenu">
+        <nav aria-label="Mobile">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+        <section class="page-header">
+            <div class="container">
+                <h1>Affiliate Disclosure & Policy</h1>
+                <p class="section-intro">Transparency is a core value at VistaVoyage.</p>
+            </div>
+        </section>
+        <section class="page-content">
+            <div class="container">
+                <h2>Our Commitment to You</h2>
+                <p>Our goal is to provide you with the best travel recommendations and tools possible. To keep our high-quality content free for everyone and to support the operational costs of the site (like research, writing, and web hosting), we participate in affiliate marketing programs.</p>
+                
+                <h2>What is an Affiliate Link?</h2>
+                <p>Throughout our site, you will see links to hotels, tours, and products. If you click on one of these links and make a purchase, we may earn a small commission from the retailer, at absolutely no extra cost to you. These are called "affiliate links."</p>
+                <p>Specifically, VistaVoyage is a partner in the Booking.com Affiliate Program. As a Booking.com Partner, we earn from qualifying bookings. This is a primary way we fund the site.</p>
+
+                <h2>Our Editorial Promise</h2>
+                <p>Your trust is our most important asset. Our participation in these programs will never influence the recommendations we make or the content we publish. The properties and products we feature are chosen based on thorough research, analysis of user reviews, and our own criteria for quality and value. Our editorial integrity is not for sale.</p>
+                <p>If you have any questions about this policy, please don't hesitate to <a href="/contact.html" class="inline-link">contact us</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="footer" aria-labelledby="footerHeading">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <h2 class="visually-hidden" id="footerHeading">Footer</h2>
+          <a href="/" class="brand footer-logo">
+            <span class="brand-mark">VV</span>
+            <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+          </a>
+          <p class="footer-tagline">Elevate every journey with curated stays & strategic travel insight.</p>
+          <p class="disclosure"><strong>Affiliate Disclosure:</strong> VistaVoyage may earn commission from qualifying bookings. <a href="/policy.html" style="color: inherit;">Learn more</a>.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-nav" aria-label="Company">
+          <h3 class="footer-title">Company</h3>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/#why">Vision & Method</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/policy.html">Affiliate Policy</a></li>
+          </ul>
+        </nav>
+        <div class="footer-legal">
+          <h3 class="footer-title">Legal</h3>
+          <p class="footer-copy">&copy; <span id="year"></span> VistaVoyage. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.documentElement.classList.remove('no-js');
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobileNav = document.getElementById('mobileMenu');
+
+      // NEW & IMPROVED JAVASCRIPT
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+        navToggle.setAttribute('aria-expanded', !expanded);
+        document.body.classList.toggle('nav-open');
+      });
+
+      mobileNav.addEventListener('click', e => {
+        if (e.target.tagName === 'A') {
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduced-motion');
+      }
+    </script>
+</body>
+</html>

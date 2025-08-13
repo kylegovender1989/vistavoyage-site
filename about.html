@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <title>About | VistaVoyage</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=1.5">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-header { padding: 120px 0 60px; text-align: center; background: var(--bg-soft); }
+        .page-content { padding: 60px 0; }
+        .page-content .container { max-width: 800px; }
+        .page-content h2 { margin-bottom: 20px; font-size: 1.8rem; }
+        .page-content p { margin-bottom: 1.5em; line-height: 1.7; }
+    </style>
+</head>
+<body>
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a href="/" class="brand" aria-label="VistaVoyage Home">
+          <span class="brand-mark" aria-hidden="true">VV</span>
+          <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileMenu">
+        <nav aria-label="Mobile">
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/toolkit.html">Toolkit</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Story</h1>
+                <p class="section-intro">From frustrating travel planning to your trusted guide.</p>
+            </div>
+        </section>
+        <section class="page-content">
+            <div class="container">
+                <p>Hi, I'm the founder of VistaVoyage, and I'm the friend you wish you had in South Africa.</p>
+
+                <p>Like you, I've been there: 20 browser tabs open, scrolling through endless, generic travel sites, feeling more overwhelmed than excited about a trip. I wasn't finding real, curated advice from a local perspective. I didn't want a list of every single hotel; I wanted to know the <em>best</em> one for a romantic weekend, a family holiday, or a solo adventure.</p>
+                
+                <p>I started VistaVoyage out of that frustration. I wanted to create the resource I couldn't find myself: a simple, beautiful, and trustworthy guide to the best of South Africa that cuts through all the noise.</p>
+                
+                <p><strong>My mission is to help you explore this incredible country with confidence and ease.</strong> I want you to feel like you're getting advice from a friend who has already done all the research, so you can spend less time stressing over planning and more time dreaming about your adventure.</p>
+                
+                <p>My own love for travel didn't start with a single grand tour, but with hundreds of small road trips to escape my 9-to-5 in Johannesburg. I fell in love with seeing the city lights fade in my rearview mirror and discovering the incredible diversity just a few hours away. It's on those weekend getaways that this passion was born.</p>
+                
+                <p>That's the spirit behind VistaVoyage. Here, you won't find endless lists. You'll find carefully selected recommendations, practical guides, and the kind of insider tips that make a trip truly unforgettable—like knowing the best roadside <em>padstal</em> to stop at for biltong on your way to the mountains.</p>
+                
+                <p>Thank you for being here. I can't wait to help you plan your next journey.</p>
+                
+                <p>Happy travels,</p>
+                <p><strong>Kyle</strong></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="footer" aria-labelledby="footerHeading">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <h2 class="visually-hidden" id="footerHeading">Footer</h2>
+          <a href="/" class="brand footer-logo">
+            <span class="brand-mark">VV</span>
+            <span class="brand-text">Vista<span class="accent">Voyage</span></span>
+          </a>
+          <p class="footer-tagline">Elevate every journey with curated stays & strategic travel insight.</p>
+          <p class="disclosure"><strong>Affiliate Disclosure:</strong> VistaVoyage may earn commission from qualifying bookings. <a href="/policy.html" style="color: inherit;">Learn more</a>.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul>
+            <li><a href="/#destinations">Destinations</a></li>
+            <li><a href="/#blog">Guides</a></li>
+            <li><a href="/#newsletter">Newsletter</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-nav" aria-label="Company">
+          <h3 class="footer-title">Company</h3>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/#why">Vision & Method</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/policy.html">Affiliate Policy</a></li>
+          </ul>
+        </nav>
+        <div class="footer-legal">
+          <h3 class="footer-title">Legal</h3>
+          <p class="footer-copy">&copy; <span id="year"></span> VistaVoyage. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.documentElement.classList.remove('no-js');
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobileNav = document.getElementById('mobileMenu');
+
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+        navToggle.setAttribute('aria-expanded', !expanded);
+        document.body.classList.toggle('nav-open');
+      });
+
+      mobileNav.addEventListener('click', e => {
+        if (e.target.tagName === 'A') {
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduced-motion');
+      }
+    </script>
+</body>
+</html>
