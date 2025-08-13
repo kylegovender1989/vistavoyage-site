@@ -18,7 +18,7 @@ export default {
       }
       
       // IMPORTANT: Replace this with your real, secret API key.
-      const API_KEY = "YOUR_REAL_WEATHER_API_KEY_GOES_HERE";
+      const API_KEY = "654803d4318841a1900164803252407";
 
       // Use the dynamic city from the user in the API URL.
       const weatherApiUrl = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${encodeURIComponent(city)}`;
