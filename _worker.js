@@ -1,42 +1,42 @@
-// This is our new "traffic controller" that runs on Cloudflare's servers.
 export default {
-  async fetch(request, env, ctx) {
-    // Get the URL the user is requesting.
+  async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Check if the path is for our new weather API endpoint.
+    // This is the API endpoint your website will call.
     if (url.pathname === '/api/get-weather') {
-      // Get the city from the query parameter (e.g., /api/get-weather?city=Soweto)
       const city = url.searchParams.get('city');
 
-      // If the user didn't provide a city, return an error.
       if (!city) {
-        return new Response(JSON.stringify({ error: { message: 'City parameter is missing.' } }), {
+        return new Response(JSON.stringify({ error: 'City parameter is missing.' }), {
           status: 400,
           headers: { 'Content-Type': 'application/json' },
         });
       }
       
-      // IMPORTANT: Replace this with your real, secret API key.
-      const API_KEY = "654803d4318841a1900164803252407";
+      // SECURELY get the API key from the environment variable you set in Cloudflare.
+      const API_KEY = env.WEATHER_API_KEY;
 
-      // Use the dynamic city from the user in the API URL.
+      if (!API_KEY) {
+        return new Response(JSON.stringify({ error: 'Server configuration error: API key not found.' }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
       const weatherApiUrl = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${encodeURIComponent(city)}`;
       
       try {
-        // Fetch the data from the real weather API.
-        const weatherResponse = await fetch(weatherApiUrl);
-        // Pass the response directly back to the user's browser.
+        const weatherResponse = await fetch(weatherApiUrl, {
+          headers: { 'User-Agent': 'Cloudflare-Worker' }
+        });
         return weatherResponse;
 
       } catch (error) {
-        return new Response('Error fetching weather data from external API', { status: 500 });
+        return new Response(JSON.stringify({ error: 'Error fetching weather data.' }), { status: 500 });
       }
     }
 
-    // If the request is not for our API, just serve the static website files.
-    // env.ASSETS.fetch() is the special Cloudflare function that serves your
-    // index.html, CSS, images, etc.
+    // For any other request, serve the static website files.
     return env.ASSETS.fetch(request);
   },
 };
